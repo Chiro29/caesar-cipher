@@ -2,11 +2,21 @@ def checkNumber(n)
   n.to_s
 
   until n.match?(/\A\d+\z/) do
-    puts "Only numbers"
+    puts "Only numbers between 1 to 25"
     n = gets.chomp
   end
 
-  n =  n.to_i
+  n = n.to_i
+end
+
+def checkNumberBetween(n)
+  until n.between?(1, 25) do
+    puts "Only numbers between 1 to 25"
+    n = gets.chomp
+    n = checkNumber(n)
+  end
+  
+  n
 end
 
 def caesar_cipher(s, n)
@@ -32,12 +42,7 @@ puts "Choose a number between 1 to 25"
 key = gets.chomp
 
 key = checkNumber(key)
-
-until key.between?(1, 25) do
-  puts "Between 1 to 25"
-  key = gets.chomp
-  key = checkNumber(key)
-end
+key = checkNumberBetween(key)
 
 puts "The number you chose: #{key}"
 
