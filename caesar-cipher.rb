@@ -19,7 +19,7 @@ def checkNumberBetween(n)
   n
 end
 
-def caesar_cipher(s, n)
+def encrypt(s, n)
   array = ("a".."z").to_a
   s.gsub(/[a-z]/) do |letter|
     index = (array.index(letter) + n) % array.size
@@ -47,10 +47,28 @@ loop do
   key = checkNumberBetween(key)
 
   puts "The number you chose: #{key}"
-  
-  new_string = caesar_cipher(string, key)
 
-  puts "Original: #{string}\nencrypted: #{new_string}"
+  puts "Do you want to encrypt or decrypt the sentence?\n1) Encrypt\n2) Decrypt"
+  
+  loop do 
+    choice = gets.chomp.to_i
+
+    case choice
+      when 1
+        new_string = encrypt(string, key)
+        puts "Original: #{string}\nencrypted: #{new_string}"
+
+        break
+      when 2
+        puts "test 2"
+        # new_string = decrypt(string, key)
+        # puts "Original: #{string}\ndecrypted: #{new_string}"
+        
+        break
+      else
+        puts "Choose between:\n1) Encrypt\n2) Decrypt"
+    end
+  end
 
   puts "Do you want to continue using the programme?\nPress any key other than 'n' or enter to continue\n'n' to close"
   again = gets.chomp.downcase
