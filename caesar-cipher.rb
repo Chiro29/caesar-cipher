@@ -27,6 +27,13 @@ def encrypt(s, n)
   end
 end
 
+def decrypt(s, n)
+  array = ("a".."z").to_a
+  s.gsub(/[a-z]/) do |letter|
+    index = (array.index(letter) - n) % array.size
+    array[index]
+  end
+end
 
 loop do 
   puts "Write something"
@@ -60,9 +67,8 @@ loop do
 
         break
       when 2
-        puts "test 2"
-        # new_string = decrypt(string, key)
-        # puts "Original: #{string}\ndecrypted: #{new_string}"
+        new_string = decrypt(string, key)
+        puts "Original: #{string}\ndecrypted: #{new_string}"
         
         break
       else
