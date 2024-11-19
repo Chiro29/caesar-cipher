@@ -27,25 +27,35 @@ def caesar_cipher(s, n)
   end
 end
 
-puts "Write something"
-string = gets.chomp
 
-until string =~ /^[a-zA-Z\s]+$/ do
-  puts "Only letters of the alphabelt and space"
+loop do 
+  puts "Write something"
   string = gets.chomp
+
+  until string =~ /^[a-zA-Z\s]+$/ do
+    puts "Only letters of the alphabet and space"
+    string = gets.chomp
+  end
+
+  string = string.downcase
+  puts "The phrase you written: #{string}"
+
+  puts "Choose a number between 1 to 25"
+  key = gets.chomp
+
+  key = checkNumber(key)
+  key = checkNumberBetween(key)
+
+  puts "The number you chose: #{key}"
+  
+  new_string = caesar_cipher(string, key)
+
+  puts "Original: #{string}\nencrypted: #{new_string}"
+
+  puts "Do you want to continue using the programme?\nPress any key other than 'n' or enter to continue\n'n' to close"
+  again = gets.chomp.downcase
+
+  if again === "n"
+    break
+  end  
 end
-
-string = string.downcase
-puts "The phrase you written: #{string}"
-
-puts "Choose a number between 1 to 25"
-key = gets.chomp
-
-key = checkNumber(key)
-key = checkNumberBetween(key)
-
-puts "The number you chose: #{key}"
-
-new_string = caesar_cipher(string, key)
-
-puts "Original: #{string}\nencrypted: #{new_string}"
